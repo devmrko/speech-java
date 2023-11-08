@@ -37,10 +37,10 @@ public class SpeechFunction {
 			Properties properties;
 			properties = PropertiesLoaderUtils.loadProperties(resource);
 
-			String namespaceName = properties.getProperty("namespaceName");
-			String bucketName = properties.getProperty("bucketName");
-			String compartmentId = properties.getProperty("compartmentId");
-			String outBucketName = properties.getProperty("outBucketName");
+			String namespaceName = System.getenv("namespaceName") == null ? properties.getProperty("namespaceName") : System.getenv("namespaceName");
+			String bucketName = System.getenv("bucketName") == null ? properties.getProperty("bucketName") : System.getenv("bucketName");
+			String compartmentId = System.getenv("compartmentId") == null ? properties.getProperty("compartmentId") : System.getenv("compartmentId");
+			String outBucketName = System.getenv("outBucketName") == null ? properties.getProperty("outBucketName") : System.getenv("outBucketName");
 
 			ResourcePrincipalAuthenticationDetailsProvider p = ociSdkHelper.getResourcePrincipalAuthenticationDetailsProvider();
 			CreateTranscriptionJobResponse createTranscriptionJobResponse = ociSdkHelper
